@@ -316,27 +316,36 @@ body::-webkit-scrollbar-thumb {
         z-index: 20;
         position: fixed;
         right: 30px;
-        background: #ffffff;
+        background: #1f1f1f;
+        color: #fff;
         border-radius: 50%;
         height: 48px;
         width: 48px;
         justify-content: center;
         align-items: center;
         box-shadow: 2px black;
+        font-size: 20px;
+        cursor: pointer;
     }
 
     .index-navbar .links {
         flex-direction: column;
         height: 100vh;
-        background-color: yellow;
+        background-color: #1f1f1f;
         top: 0;
         right: 0;
         position: fixed;
         padding: 30px;
-        padding-top: 70px;
+        padding-top: 100px;
         z-index: 10;
         align-items: flex-end;
         gap: 16px;
+        width: 30vw;
+        min-width: 150px;
+    }
+    
+    .index-navbar .links a {
+        color: #fff;
     }
 
 
