@@ -90,6 +90,7 @@ hr {
     width: calc(100% - 140px);
     max-width: 1440px;
     margin: 0 auto;
+    opacity: 0.4;
 }
 
 .index-navbar .links {
@@ -153,6 +154,9 @@ hr {
     color: #fff;
     text-decoration: none;
     gap: 80px;
+    background-color: red;
+    height: 510px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
 
 .spaces-container .spaces-title h1 {
@@ -182,10 +186,39 @@ hr {
     border: 2px solid #FFFFFF;
     border-radius: 30px;
     padding: 10px 20px;
+    transition: .3s;
+    margin-top: 40px;
 }
 
 .spaces-container .spaces-content a p {
     white-space: nowrap;
+}
+
+.spaces-container .spaces-content a:hover {
+    background-color: #ffffff48;
+}
+
+a.register-btn {
+    padding: 8px 20px;
+    border-radius: 24px;
+    background-color: #efefef;
+}
+
+a.register-btn,
+.index-navbar .links a {
+    transition: .3s;
+}
+
+a.register-btn:hover {
+    background-color: #000000;
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-weight: 400;
+    color: #fff;
+}
+
+a.first-btn {
+    margin-right: -24px;
 }
 
 body::-webkit-scrollbar {
@@ -201,4 +234,119 @@ body::-webkit-scrollbar-thumb {
     border-radius: 0px;
     border: 1px solid rgb(51, 51, 51);
     cursor: pointer;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media screen and (max-width: 1040px) {
+    .header .header-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .header .header-text h1 {
+        min-width: auto;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 1330px) {
+    #about .about-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #about .about-title p {
+        margin-left: 0px;
+        text-align: left;
+        line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #about {
+        flex-direction: column;
+    }
+
+    #about img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .spaces-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .spaces-container .spaces-title h1 {
+        white-space: wrap;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .index-navbar,
+    .header,
+    #about {
+        padding: 0 6%;
+    }
+
+    .spaces-container {
+        padding: 90px 6%;
+    }
+
+    hr {
+        width: calc(100% - 12%);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .index-navbar .links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        z-index: 20;
+        position: fixed;
+        right: 30px;
+        background: #ffffff;
+        border-radius: 50%;
+        height: 48px;
+        width: 48px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px black;
+    }
+
+    .index-navbar .links {
+        flex-direction: column;
+        height: 100vh;
+        background-color: yellow;
+        top: 0;
+        right: 0;
+        position: fixed;
+        padding: 30px;
+        padding-top: 70px;
+        z-index: 10;
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+
+    a.first-btn {
+        margin-right: 0px;
+    }
+
+    a.register-btn {
+        padding: 0;
+        border-radius: 0;
+        background-color: transparent;
+    }
 }

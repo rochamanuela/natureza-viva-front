@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-index.css">
-    <title>Document</title>
+    <title>Bem vindo(a)</title>
 </head>
 
 <body>
     <div class="index-navbar">
         <div class="logo">Natureza Viva</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="links">
             <a href="#about">Conheça-nos</a>
             <a href="#spaces">Espaços</a>
-            <a href="">Entrar</a>
-            <a href="">Cadastre-se</a>
+            <a href="" class="register-btn first-btn">Entrar</a>
+            <a href="" class="register-btn">Cadastre-se</a>
         </div>
     </div>
     
@@ -73,6 +74,13 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function toggleMenu() {
+            const links = document.querySelector('.links');
+            links.style.display = (links.style.display === 'flex') ? 'none' : 'flex';
+        }
+    </script>
 </body>
 
 </html>
