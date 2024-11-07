@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Nossos Espaços</title>
+</head>
+
+<body>
+
+    <div class="container-cards" id="cardsContainer"></div>
+
+    <script>
+        const data = [
+            {
+                nomeEspaco: 'Salão de Festas',
+                capacidade: 300,
+                disponibilidadeDias: ['Seg', 'Ter', 'Sex', 'Dom'],
+                horarioInicial: '10:00',
+                horarioFinal: '23:59',
+            },
+            {
+                nomeEspaco: 'Sala de Reuniões',
+                capacidade: 20,
+                disponibilidadeDias: ['Seg', 'Qua', 'Sex'],
+                horarioInicial: '08:00',
+                horarioFinal: '18:00',
+            },
+            {
+                nomeEspaco: 'Auditório',
+                capacidade: 100,
+                disponibilidadeDias: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+                horarioInicial: '09:00',
+                horarioFinal: '22:00',
+            },
+            {
+                nomeEspaco: 'Área Externa',
+                capacidade: 50,
+                disponibilidadeDias: ['Sáb', 'Dom'],
+                horarioInicial: '10:00',
+                horarioFinal: '20:00',
+            }
+        ];
+
+        function renderCards(data) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+
+            data.map(item => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                card.innerHTML = `
+                    <h2 class="title">${item.nomeEspaco}</h2>
+                    <div class="informations">
+                        <div class="information">
+                            <img src="imagens/vectors/person.svg">
+                            <p><strong>Capacidade:</strong> ${item.capacidade} pessoas</p>
+                        </div>
+                        <div class="information">
+                            <img src="imagens/vectors/calendar.svg">
+                            <p><strong>Disponibilidade:</strong> ${item.disponibilidadeDias.join(', ')}</p>
+                        </div>
+                        <div class="information">
+                            <img src="imagens/vectors/clock.svg">
+                            <p><strong>Horários:</strong> ${item.horarioInicial} às ${item.horarioFinal}</p>
+                        </div>
+                    </div>
+                    <button>solicitar aluguel</button>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        renderCards(data);
+    </script>
+
+
+</body>
+
+</html>
