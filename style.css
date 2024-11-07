@@ -2,10 +2,11 @@
 
 :root {
     --static-color: #000000;
-    --hover-color: #360c49;
+    --hover-color: #815fbc;
 }
 
-.login-container {
+.login-container,
+.register-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,6 +25,18 @@
     margin-left: 10px;
 }
 
+.register-container .image {
+    background-image: url("imagens/borboleta.png");
+    background-repeat: no-repeat;
+    height: calc(100vh - 20px);
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-position: bottom;
+}
+
 .logo {
     font-family: 'Bebas Neue';
     font-style: normal;
@@ -33,21 +46,33 @@
     color: #000000;
     white-space: nowrap;
     position: absolute;
+}
+
+.login-container .logo {
     top: 40px;
     right: 40px;
 }
 
-.login-container .child {
+.register-container .logo {
+    top: 40px;
+    left: 40px;
+}
+
+.login-container .child,
+.register-container .child {
     width: 100%;
 }
 
-.login-container .image .text {
+.login-container .image .text,
+.register-container .image .text {
     padding: 107px 50px 50px 50px;
     background: linear-gradient(360deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
     border-radius: 0px 0px 10px 10px;
     width: 100%;
 }
-.login-container .image .text p {
+
+.login-container .image .text p,
+.register-container .image .text p {
     font-family: 'Bebas Neue';
     font-style: normal;
     font-weight: 400;
@@ -56,41 +81,111 @@
     color: #FFFFFF;
 }
 
+/* estilos gerais para formulário */
+
+input {
+    width: calc(100% - 44px);
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border: 2px solid #040608;
+    border-radius: 12px;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+    transition: .4s;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: var(--static-color);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+label {
+    font-weight: 600;
+    line-height: 16px;
+}
+
+::placeholder {
+    color: #A9A9A9;
+}
+
+input:focus {
+    border-color: #9770da;
+    box-shadow: 2px #9770da;
+    /* filter: drop-shadow(0px 0px 3px rgba(138, 100, 204, 0.4)); */
+}
+
+.login-container .center,
+.register-container .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.login-form,
+.register-form {
+    max-width: 450px;
+}
+
+.login-form p,
+.register-form p {
+    margin-bottom: 60px;
+    margin-top: 10px;
+}
+
+.login-form h1,
+.register-form h1 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 47px;
+    padding-top: 100px;
+}
+
+p.redirect-link {
+    text-align: center;
+    color: #A5A5A5;
+}
+
+p.redirect-link a {
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.eye {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: -57px;
+    left: 90%;
+}
+
+.icon-style {
+    font-weight: 100;
+    color: rgb(63, 63, 63);
+}
+
 @media screen and (max-width: 768px) {
-    .login-container .image {
+
+    .login-container .image,
+    .register-container .image {
         display: none;
     }
 
-    .login-form {
+    .login-form,
+    .register-form {
         width: 100%;
         padding: 7%;
-    }
-
-    .login-form input {
-        width: calc(100% - 44px);
-        margin-bottom: 20px;
-        padding: 15px 20px;
-        border: 2px solid #040608;
-        border-radius: 12px;
-        font-family: 'Raleway', sans-serif;
-    }
-
-    .login-form input[type="submit"] {
-        width: 100%;
-        background-color: var(--static-color);
-        color: #FFFFFF;
-        text-transform: uppercase;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .login-form input[type="submit"]:hover {
-        background-color: var(--hover-color);
-        border-color: var(--hover-color);
-    }
-
-    label {
-        font-weight: 600;
-        line-height: 16px;
     }
 }
