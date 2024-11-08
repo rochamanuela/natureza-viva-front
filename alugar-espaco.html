@@ -9,12 +9,11 @@
 </head>
 
 <body>
-
     <div class="user-navbar">
         <div class="links">
-            <a href="" class="active">Alugar espaço</a>
-            <a href="">Consultar agendamento</a>
-            <a href="">Meus agendamentos</a>
+            <a href="alugar-espaco.html" class="active">Alugar espaço</a>
+            <a href="consultar-agendamento.html">Consultar agendamento</a>
+            <a href="meus-agendamentos.html">Meus agendamentos</a>
         </div>
         <div class="user-name">
             <p>Jennifer Adrielle</p>
@@ -22,7 +21,13 @@
         </div>
     </div>
 
-    <div class="container-cards" id="cardsContainer"></div>
+    <div class="container-main-cards">
+        <div class="content">
+            <h1 class="page-title">Conheça nossos espaços</h1>
+            <div class="container-cards" id="cardsContainer"></div>
+        </div>
+    </div>
+
     <script>
         const data = [
             {
@@ -88,8 +93,6 @@
 
         renderCards(data);
     </script>
-
-
 </body>
 
 </html>

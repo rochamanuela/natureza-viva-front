@@ -190,6 +190,84 @@ p.redirect-link a {
     }
 }
 
+/* classes comuns */
+
+.page-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 40px;
+}
+
+/* navbar das telas de usuário comum */
+
+.user-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 15px;
+}
+
+.container-main-cards {
+    display: grid;
+    place-items: center;
+    min-height: calc(100vh - 70px);
+}
+
+.container-main-cards .content {
+    /* width: 100%; */
+    max-width: 1070px;
+}
+
+.user-navbar .user-name {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.user-navbar .user-name p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.user-navbar .user-name div {
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFF;
+    background-color: #DF0086;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.user-navbar .links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 34px;
+}
+
+.user-navbar .links a {
+    text-decoration: none;
+    color: #999999;
+    font-size: 12px;
+    padding-bottom: 3px;
+    transition: .2s;
+}
+
+.user-navbar .links a:hover,
+.user-navbar .links a.active {
+    border-bottom: 2px solid #000;
+    color: #000;
+}
+
+
 /* estilos para a tela de aluguel de espaços */
 
 .card {
