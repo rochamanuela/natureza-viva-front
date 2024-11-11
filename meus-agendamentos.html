@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Meus agendamentos</title>
+</head>
+
+<body>
+    <div class="user-navbar">
+        <div class="links">
+            <a href="alugar-espaco.html">Alugar espaço</a>
+            <a href="consultar-agendamento.html">Consultar agendamento</a>
+            <a href="meus-agendamentos.html" class="active">Meus agendamentos</a>
+        </div>
+        <div class="user-name">
+            <p>Jennifer Adrielle</p>
+            <div>JA</div>
+        </div>
+    </div>
+
+    <div class="container-main-table">
+        <div class="content">
+            <h1 class="page-title">Meus Agendamentos</h1>
+            <table>
+                <tr>
+                    <th>Data do Evento</th>
+                    <th>Horário do Evento</th>
+                    <th>Local do Evento</th>
+                    <th>Avaliação</th>
+                    <th>Aprovado em</th>
+                    <th>Atualizar Informações</th>
+                    <th>Cancelar</th>
+                </tr>
+                <tbody id="tableContainer"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-edit-event" id="editModal">
+        <div class="modal-content">
+            <h3>EDITAR AGENDAMENTO</h3><br>
+
+            <div class="form-row">
+                <div>
+                    <label for="editdataEvento">Data do Evento</label>
+                    <input type="date" id="editdataEvento" name="dataEvento">
+                </div>
+                <div>
+                    <label for="editHorarioInicio">Horário de Início</label>
+                    <input type="time" id="editHorarioInicio" name="horarioInicio">
+                </div>
+                <div>
+                    <label for="editHorarioFim">Horário de Fim</label>
+                    <input type="time" id="editHorarioFim" name="horarioFim">
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button class="close btn-secondary" id="closeModalBtn">Fechar</button>
+                <button id="saveEditBtn" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+                local: 'Auditório 2',
+                avaliacao: 'Indisponível',
+                dataAprovacao: 'Pendente'
+            },
+            {
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '14:00',
+                horarioFim: '16:00',
+                local: 'Auditório 3',
+                avaliacao: '8 de 10',
+                dataAprovacao: 'Sep. 20, 2024'
+            }
+        ];
+
+        const editModal = document.getElementById('editModal');
+        const saveEditBtn = document.getElementById('saveEditBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function renderTable(data) {
+            const containerTable = document.getElementById('tableContainer');
+            containerTable.innerHTML = '';
+
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+
+                const dataEvento = document.createElement('td');
+                dataEvento.textContent = item.dataEvento;
+                row.appendChild(dataEvento);
+
+                const horario = document.createElement('td');
+                horario.textContent = `${item.horarioInicio} - ${item.horarioFim}`;
+                row.appendChild(horario);
+
+                const local = document.createElement('td');
+                local.textContent = item.local;
+                row.appendChild(local);
+
+                const avaliacao = document.createElement('td');
+                avaliacao.innerHTML = `<p>${item.avaliacao}</p>`;
+                if (item.avaliacao === 'Indisponível') {
+                    avaliacao.classList.add('status-indisponivel');
+                } else if (item.avaliacao === 'Pendente') {
+                    avaliacao.classList.add('status-pendente');
+                }
+                row.appendChild(avaliacao);
+
+                const dataAprovacao = document.createElement('td');
+                dataAprovacao.innerHTML = `<p>${item.dataAprovacao}</p>`;
+                if (item.dataAprovacao === 'Pendente') {
+                    dataAprovacao.classList.add('status-pendente');
+                }
+                row.appendChild(dataAprovacao);
+
+                const editButton = document.createElement('td');
+                editButton.innerHTML = '<button class="editBtn"><img src="/imagens/vectors/edit.svg"></button>';
+                editButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                row.appendChild(editButton);
+                
+                const deleteButton = document.createElement('td');
+                deleteButton.innerHTML = '<button class="deleteBtn"><img src="/imagens/vectors/delete.svg"></button>';
+                deleteButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                row.appendChild(deleteButton);
+
+                containerTable.appendChild(row);
+            });
+        }
+
+
+        function openEditModal(item, index) {
+            document.getElementById('editdataEvento').value = item.dataEvento;
+            document.getElementById('editHorarioInicio').value = item.horarioInicio;
+            document.getElementById('editHorarioFim').value = item.horarioFim;
+
+            editModal.style.display = 'flex';
+            saveEditBtn.onclick = () => saveEdit(index);
+        }
+
+        function saveEdit(index) {
+            const updatedData = {
+                dataEvento: document.getElementById('editdataEvento').value,
+                horarioInicio: document.getElementById('editHorarioInicio').value,
+                horarioFim: document.getElementById('editHorarioFim').value,
+                local: data[index].local,
+                avaliacao: data[index].avaliacao,
+                dataAprovacao: data[index].dataAprovacao
+            };
+
+            data[index] = updatedData;
+
+            editModal.style.display = 'none';
+            renderTable(data);
+        }
+
+        closeModalBtn.onclick = () => editModal.style.display = 'none';
+
+        renderTable(data);
+    </script>
+</body>
+
+</html>

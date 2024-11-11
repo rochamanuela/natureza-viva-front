@@ -28,6 +28,46 @@
         </div>
     </div>
 
+    <!-- Modal structure -->
+    <div id="modal" class="modal-details" style="display: none;">
+        <div class="modal-content">
+            <p class="modal-title">DETALHES DE USO DO LOCAL</p>
+            <p class="modal-subtitle" id="modal-local"></p>
+            
+            <!-- Container para as restrições como uma lista -->
+            <p style="font-weight: 700; color: #FF0000;">Restrições:</p>
+            <ul id="modal-restrictions" style="list-style-type: disc; padding-left: 20px;"></ul>
+            <br><p id="modal-observation" style="text-align: justify;"></p>
+
+            <hr>
+
+            <p class="modal-title">DETALHES DA SOLICITAÇÃO</p>
+            <p class="modal-subtitle">Qual dia e horário você gostaria de alugar esse espaço?</p>
+
+            <form action="">
+                <div class="form-row">
+                    <div>
+                        <label for="data">Data</label>
+                        <input required type="date" name="data" id="data">
+                    </div>
+                    <div>
+                        <label for="horarioInicio">Horário de início</label>
+                        <input required type="time" name="horarioInicio" id="horarioInicio">
+                    </div>
+                    <div>
+                        <label for="horarioFim">Horário de término</label>
+                        <input required type="time" name="horarioFim" id="horarioFim">
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <span class="close" onclick="closeModal()">CANCELAR</span>
+                    <input type="submit" value="ENVIAR SOLICITAÇÃO">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         const data = [
             {
@@ -36,6 +76,8 @@
                 disponibilidadeDias: ['Seg', 'Ter', 'Sex', 'Dom'],
                 horarioInicial: '10:00',
                 horarioFinal: '23:59',
+                observacao: 'Ao final da festa, o espaço deve ser deixado limpo e organizado, com todo o lixo recolhido e os móveis em suas posições originais. Qualquer dano causado será de responsabilidade do locatário, e cancelamentos com menos de 48 horas de antecedência não têm reembolso.',
+                restricoes: ['Proibido fumar no local']
             },
             {
                 nomeEspaco: 'Sala de Reuniões',
@@ -43,6 +85,8 @@
                 disponibilidadeDias: ['Seg', 'Qua', 'Sex'],
                 horarioInicial: '08:00',
                 horarioFinal: '18:00',
+                observacao: 'Não há',
+                restricoes: ['Proibido fumar no local', 'Proibido comer no local']
             },
             {
                 nomeEspaco: 'Auditório',
@@ -50,6 +94,8 @@
                 disponibilidadeDias: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
                 horarioInicial: '09:00',
                 horarioFinal: '22:00',
+                observacao: 'Não há',
+                restricoes: ['Proibido fumar no local']
             },
             {
                 nomeEspaco: 'Área Externa',
@@ -57,6 +103,8 @@
                 disponibilidadeDias: ['Sáb', 'Dom'],
                 horarioInicial: '10:00',
                 horarioFinal: '20:00',
+                observacao: 'Não há',
+                restricoes: ['Proibido barulhos altos após às 22h']
             }
         ];
 
@@ -64,7 +112,7 @@
             const container = document.getElementById('cardsContainer');
             container.innerHTML = '';
 
-            data.map(item => {
+            data.forEach(item => {
                 const card = document.createElement('div');
                 card.classList.add('card');
 
@@ -84,11 +132,35 @@
                             <p><strong>Horários:</strong> ${item.horarioInicial} às ${item.horarioFinal}</p>
                         </div>
                     </div>
-                    <button>solicitar aluguel</button>
+                    <button data-nome="${item.nomeEspaco}" data-restricoes='${JSON.stringify(item.restricoes)}' data-observacao="${item.observacao}" onclick="openModal(this)">Solicitar Aluguel</button>
                 `;
 
                 container.appendChild(card);
             });
+        }
+
+        function openModal(button) {
+            const nomeEspaco = button.getAttribute('data-nome');
+            const restricoes = JSON.parse(button.getAttribute('data-restricoes'));
+            const observacao = button.getAttribute('data-observacao');
+            
+            document.getElementById('modal-local').textContent = `Leia os detalhes sobre restrições e observações do uso do espaço ${nomeEspaco}`;
+            document.getElementById('modal-observation').innerHTML = `<span style='font-weight: 700; color: #FF0000;'>Observação:</span> ${observacao}`;
+            
+            const restrictionsList = document.getElementById('modal-restrictions');
+            restrictionsList.innerHTML = '';
+
+            restricoes.forEach(restriction => {
+                const li = document.createElement('li');
+                li.textContent = restriction;
+                restrictionsList.appendChild(li);
+            });
+            
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
         }
 
         renderCards(data);

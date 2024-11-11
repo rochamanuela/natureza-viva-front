@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Consultar Agendamento</title>
+</head>
+
+<body>
+    <div class="user-navbar">
+        <div class="links">
+            <a href="alugar-espaco.html">Alugar espaço</a>
+            <a href="consultar-agendamento.html" class="active">Consultar agendamento</a>
+            <a href="meus-agendamentos.html">Meus agendamentos</a>
+        </div>
+        <div class="user-name">
+            <p>Jennifer Adrielle</p>
+            <div>JA</div>
+        </div>
+    </div>
+
+    <div class="container-main-table">
+        <div class="content">
+            <h1 class="page-title">Consulta de Agenda</h1>
+            <form action="">
+                <div class="form-row">
+                    <div>
+                        <label for="nomeLocal">Nome do Local</label>
+                        <input type="text" id="nomeLocal" name="nomeLocal" placeholder="Auditório">
+                    </div>
+                    <div>
+                        <label for="mes">Mês</label><br>
+                        <div class="select-container">
+                            <select name="" id="">
+                                <option value="01">Janeiro</option>
+                                <option value="02">Fevereiro</option>
+                                <option value="03">Março</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Maio</option>
+                                <option value="06">Junho</option>
+                                <option value="07">Julho</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for=""></label>
+                        <input type="submit" value="Buscar">
+                    </div>
+                </div>
+
+            </form>
+            <table>
+                <tr>
+                    <th>Nome do Solicitante</th>
+                    <th>Data do Evento</th>
+                    <th>Horário do Evento</th>
+                    <th>Local do Evento</th>
+                </tr>
+                <tbody id="tableContainer"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                nome: 'Kalil Felipe',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+                local: 'Auditório 2',
+            },
+            {
+                nome: 'Manuela Souza',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '14:00',
+                horarioFim: '16:00',
+                local: 'Auditório 3',
+            }
+        ];
+
+        function renderTable(data) {
+            const containerTable = document.getElementById('tableContainer');
+            containerTable.innerHTML = '';
+
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+
+                const nome = document.createElement('td');
+                nome.textContent = item.nome;
+                row.appendChild(nome);
+
+                const dataEvento = document.createElement('td');
+                dataEvento.textContent = item.dataEvento;
+                row.appendChild(dataEvento);
+
+                const horario = document.createElement('td');
+                horario.textContent = `${item.horarioInicio} - ${item.horarioFim}`;
+                row.appendChild(horario);
+
+                const local = document.createElement('td');
+                local.textContent = item.local;
+                row.appendChild(local);
+
+                containerTable.appendChild(row);
+            });
+        }
+
+        renderTable(data);
+    </script>
+</body>
+
+</html>
