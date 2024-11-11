@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Gerenciar Espaços</title>
+</head>
+
+<body>
+    <div class="user-navbar">
+        <div class="links">
+            <a href="resumo-agendamentos.html">Todos agendamentos</a>
+            <a href="cadastrar-espaco.html">Novo espaço</a>
+            <a href="agendamentos-pendentes.html">Agendamentos pendentes</a>
+            <a href="avaliacoes-pendentes.html">Avaliações pendentes</a>
+            <a href="gerenciar-espacos.html" class="active">Gerenciar espaços</a>
+            <a href="../consultar-agendamento.html">Consultar agendamento</a>
+        </div>
+        <div class="user-name">
+            <p>Manuela Souza</p>
+            <div>MS</div>
+        </div>
+    </div>
+
+    <div class="container-main-table">
+        <div class="content">
+            <h1 class="page-title">Gerenciamento de Espaços</h1>
+            <table>
+                <tr>
+                    <th>Nome do Local</th>
+                    <th>Capacidade</th>
+                    <th>Dias disponíveis</th>
+                    <th>Horários disponíveis</th>
+                    <th>Atualizar Informações</th>
+                    <th>Excluir</th>
+                </tr>
+                <tbody id="tableContainer"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div class="modal-edit-event" id="editModal">
+        <div class="modal-content">
+            <h3>EDITAR AGENDAMENTO</h3><br>
+
+            <div class="form-row">
+                <div>
+                    <label for="editdataEvento">Data do Evento</label>
+                    <input type="date" id="editdataEvento" name="dataEvento">
+                </div>
+                <div>
+                    <label for="editHorarioInicio">Horário de Início</label>
+                    <input type="time" id="editHorarioInicio" name="horarioInicio">
+                </div>
+                <div>
+                    <label for="editHorarioFim">Horário de Fim</label>
+                    <input type="time" id="editHorarioFim" name="horarioFim">
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button class="close btn-secondary" id="closeModalBtn">Fechar</button>
+                <button id="saveEditBtn" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        const data = [
+            {
+                local: 'Auditório 2',
+                capacidade: 200,
+                diasDisponiveis: ['Seg', 'Ter', 'Qua'],
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+            },
+            {
+                local: 'Auditório 3',
+                capacidade: 200,
+                diasDisponiveis: ['Sex', 'Sab', 'Dom'],
+                horarioInicio: '10:30',
+                horarioFim: '22:45',
+            },
+            {
+                local: 'Sala de reuniões',
+                capacidade: 200,
+                diasDisponiveis: ['Seg', 'Qua', 'Sex'],
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+            },
+        ];
+
+        const editModal = document.getElementById('editModal');
+        const saveEditBtn = document.getElementById('saveEditBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function renderTable(data) {
+            const containerTable = document.getElementById('tableContainer');
+            containerTable.innerHTML = '';
+
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+
+                const local = document.createElement('td');
+                local.textContent = item.local;
+                row.appendChild(local);
+                
+                const capacidade = document.createElement('td');
+                capacidade.textContent = `${item.capacidade} pessoas`;
+                row.appendChild(capacidade);
+                
+                const diasDisponiveis = document.createElement('td');
+                diasDisponiveis.textContent = `${item.diasDisponiveis.join(', ')}`;
+                row.appendChild(diasDisponiveis);
+
+                const horario = document.createElement('td');
+                horario.textContent = `${item.horarioInicio} - ${item.horarioFim}`;
+                row.appendChild(horario);
+
+                const editButton = document.createElement('td');
+                editButton.innerHTML = '<button class="editBtn"><img src="/imagens/vectors/edit.svg"></button>';
+                editButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                row.appendChild(editButton);
+
+                const deleteButton = document.createElement('td');
+                deleteButton.innerHTML = '<button class="deleteBtn"><img src="/imagens/vectors/delete.svg"></button>';
+                deleteButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                row.appendChild(deleteButton);
+
+                containerTable.appendChild(row);
+            });
+        }
+
+
+        // function openEditModal(item, index) {
+        //     document.getElementById('editdataEvento').value = item.dataEvento;
+        //     document.getElementById('editHorarioInicio').value = item.horarioInicio;
+        //     document.getElementById('editHorarioFim').value = item.horarioFim;
+
+        //     editModal.style.display = 'flex';
+        //     saveEditBtn.onclick = () => saveEdit(index);
+        // }
+
+        // function saveEdit(index) {
+        //     const updatedData = {
+        //         dataEvento: document.getElementById('editdataEvento').value,
+        //         horarioInicio: document.getElementById('editHorarioInicio').value,
+        //         horarioFim: document.getElementById('editHorarioFim').value,
+        //         local: data[index].local,
+        //         avaliacao: data[index].avaliacao,
+        //         dataAprovacao: data[index].dataAprovacao
+        //     };
+
+        //     data[index] = updatedData;
+
+        //     editModal.style.display = 'none';
+        //     renderTable(data);
+        // }
+
+        // closeModalBtn.onclick = () => editModal.style.display = 'none';
+
+        renderTable(data);
+    </script>
+</body>
+
+</html>
