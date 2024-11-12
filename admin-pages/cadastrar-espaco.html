@@ -77,7 +77,7 @@
                     </div>
                     <div>
                         <label for="">Observação</label>
-                        <textarea name="observacao" id=""></textarea>
+                        <textarea name="observacao" id=""  placeholder="Escreva aqui sua observação sobre o uso do local"></textarea>
                     </div>
                 </div>
                 <input type="submit" value="Salvar">
@@ -87,20 +87,15 @@
 
     <script>
         function selectDay(button) {
-            button.classList.toggle('selected'); // Alterna a seleção do botão clicado
+            button.classList.toggle('selected');
         }
 
         function saveSelection() {
-            // Coleta os dias que têm a classe 'selected'
             const selectedDays = Array.from(document.querySelectorAll('.select-button.selected'))
                 .map(button => button.getAttribute('data-day'));
 
-            console.log(selectedDays); // Exibe o array de dias selecionados no console
-
-            // Você pode usar esse array para outros fins, como enviar para um servidor ou exibir em outro lugar
+            console.log(selectedDays);
         }
-
-
     </script>
 </body>
 

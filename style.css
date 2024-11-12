@@ -106,6 +106,10 @@ input[type="submit"],
     cursor: pointer;
 }
 
+.btn-primary {
+    margin-bottom: 0;
+}
+
 input[type="submit"]:hover,
 .btn-primary:hover {
     background-color: var(--hover-color);
@@ -351,7 +355,9 @@ p.redirect-link a {
 /* estilos do modal de detalhes */
 
 .modal-details,
-.modal-evaluation {
+.modal-evaluation,
+.modal-delete,
+.modal-edit {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: none;
@@ -365,7 +371,9 @@ p.redirect-link a {
 }
 
 .modal-details .modal-content,
-.modal-evaluation .modal-content {
+.modal-evaluation .modal-content,
+.modal-delete .modal-content,
+.modal-edit .content {
     background-color: #fff;
     border-radius: 20px;
     padding: 30px;
@@ -374,8 +382,13 @@ p.redirect-link a {
     box-shadow: 3px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.modal-evaluation .modal-content {
+.modal-evaluation .modal-content,
+.modal-delete .modal-content {
     width: 360px;
+}
+
+.modal-edit .content {
+    width: 843px;
 }
 
 .modal-evaluation .modal-content form input,
@@ -422,6 +435,8 @@ hr {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 700;
+    margin-bottom: 0;
+    white-space: nowrap;
 }
 
 .modal-details .modal-content form div span {
@@ -744,4 +759,14 @@ textarea:hover {
     justify-self: end;
     display: block;
     margin-top: 20px;
+}
+
+.modal-edit .content form .row-buttons input {
+    margin: 0;
+    width: min-content;
+}
+
+.modal-edit .content form .row-buttons {
+    margin-top: 20px;
+    justify-content: flex-end;
 }

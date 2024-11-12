@@ -41,30 +41,82 @@
         </div>
     </div>
 
-    <!-- <div class="modal-edit-event" id="editModal">
+    <div id="deleteModal" class="modal-delete" style="display: none;">
         <div class="modal-content">
-            <h3>EDITAR AGENDAMENTO</h3><br>
+            <p class="modal-title">EXCLUSÃO DE ESPAÇO</p>
+            <p class="modal-subtitle">Tem certeza que deseja excluir esse espaço?</p>
 
             <div class="form-row">
-                <div>
-                    <label for="editdataEvento">Data do Evento</label>
-                    <input type="date" id="editdataEvento" name="dataEvento">
-                </div>
-                <div>
-                    <label for="editHorarioInicio">Horário de Início</label>
-                    <input type="time" id="editHorarioInicio" name="horarioInicio">
-                </div>
-                <div>
-                    <label for="editHorarioFim">Horário de Fim</label>
-                    <input type="time" id="editHorarioFim" name="horarioFim">
-                </div>
-            </div>
-            <div class="form-buttons">
-                <button class="close btn-secondary" id="closeModalBtn">Fechar</button>
-                <button id="saveEditBtn" class="btn-primary">Salvar</button>
+                <button class="btn-secondary" id="closeModalBtn">NÃO, CANCELAR</button>
+                <button class="btn-primary">SIM, EXCLUIR</button>
             </div>
         </div>
-    </div> -->
+    </div>
+
+    <div id="editModal" class="modal-edit">
+        <div class="content">
+            <h1 class="page-title">Atualização do espaço</h1>
+            <form action="">
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Nome do Local</label>
+                        <input type="text" name="nome" placeholder="Auditório">
+                    </div>
+                    <div>
+                        <label for="">Capacidade máxima</label>
+                        <input type="number" name="capacidade" placeholder="10">
+                    </div>
+                    <div>
+                        <label for="">Horários disponíveis</label>
+                        <div class="form-row">
+                            <input type="time" name="horarioInicio">
+                            <input type="time" name="horarioFim">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Dias disponíveis</label>
+                        <div class="button-group">
+                            <button type="button" class="select-button" onclick="selectDay(this)">Segunda-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Terça-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Quarta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Quinta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Sexta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Sábado</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Domingo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Restrições do local</label>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="dontEat" name="dontEat" value="dontEat">
+                            <label for="dontEat">Proibido comer no local</label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="noSmoking" name="noSmoking" value="noSmoking">
+                            <label for="noSmoking">Proibido fumar no local</label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="keepQuiet" name="keepQuiet" value="keepQuiet">
+                            <label for="keepQuiet">Proibido fazer barulhos altos</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="">Observação</label>
+                        <textarea name="observacao" id="" placeholder="Escreva aqui sua observação sobre o uso do local"></textarea>
+                    </div>
+                </div>
+                <div class="row-buttons">
+                    <button class="btn-secondary" id="closeModalBtn">NÃO, CANCELAR</button>
+                    <input type="submit" value="Salvar">
+                </div>
+            </form>
+        </div>
+    </div>
+    
 
     <script>
         const data = [
@@ -105,11 +157,11 @@
                 const local = document.createElement('td');
                 local.textContent = item.local;
                 row.appendChild(local);
-                
+
                 const capacidade = document.createElement('td');
                 capacidade.textContent = `${item.capacidade} pessoas`;
                 row.appendChild(capacidade);
-                
+
                 const diasDisponiveis = document.createElement('td');
                 diasDisponiveis.textContent = `${item.diasDisponiveis.join(', ')}`;
                 row.appendChild(diasDisponiveis);
@@ -125,7 +177,7 @@
 
                 const deleteButton = document.createElement('td');
                 deleteButton.innerHTML = '<button class="deleteBtn"><img src="/imagens/vectors/delete.svg"></button>';
-                deleteButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                deleteButton.querySelector('button').addEventListener('click', () => openDeleteModal(item, index));
                 row.appendChild(deleteButton);
 
                 containerTable.appendChild(row);
@@ -133,32 +185,26 @@
         }
 
 
-        // function openEditModal(item, index) {
-        //     document.getElementById('editdataEvento').value = item.dataEvento;
-        //     document.getElementById('editHorarioInicio').value = item.horarioInicio;
-        //     document.getElementById('editHorarioFim').value = item.horarioFim;
+        function openDeleteModal(item, index) {
+            deleteModal.style.display = 'flex';
+            closeModalBtn.onclick = () => deleteModal.style.display = 'none';
+        }
 
-        //     editModal.style.display = 'flex';
-        //     saveEditBtn.onclick = () => saveEdit(index);
-        // }
+        function openEditModal(item, index) {
+            editModal.style.display = 'flex';
+            closeModalBtn.onclick = () => editModal.style.display = 'none';
+        }
 
-        // function saveEdit(index) {
-        //     const updatedData = {
-        //         dataEvento: document.getElementById('editdataEvento').value,
-        //         horarioInicio: document.getElementById('editHorarioInicio').value,
-        //         horarioFim: document.getElementById('editHorarioFim').value,
-        //         local: data[index].local,
-        //         avaliacao: data[index].avaliacao,
-        //         dataAprovacao: data[index].dataAprovacao
-        //     };
+        function selectDay(button) {
+            button.classList.toggle('selected');
+        }
 
-        //     data[index] = updatedData;
+        function saveSelection() {
+            const selectedDays = Array.from(document.querySelectorAll('.select-button.selected'))
+                .map(button => button.getAttribute('data-day'));
 
-        //     editModal.style.display = 'none';
-        //     renderTable(data);
-        // }
-
-        // closeModalBtn.onclick = () => editModal.style.display = 'none';
+            console.log(selectedDays);
+        }
 
         renderTable(data);
     </script>
