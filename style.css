@@ -83,7 +83,9 @@
 
 /* estilos gerais para formulário */
 
-input {
+input,
+.btn-secondary,
+.btn-primary {
     width: calc(100% - 44px);
     margin-bottom: 20px;
     padding: 15px 20px;
@@ -213,7 +215,8 @@ p.redirect-link a {
 }
 
 .container-main-cards,
-.container-main-table {
+.container-main-table,
+.container-main-space-register {
     display: grid;
     place-items: center;
     min-height: calc(100vh - 70px);
@@ -260,7 +263,7 @@ p.redirect-link a {
     color: #999999;
     font-size: 12px;
     padding-bottom: 3px;
-    transition: .2s;
+    /* transition: .2s; */
 }
 
 .user-navbar .links a:hover,
@@ -347,7 +350,8 @@ p.redirect-link a {
 
 /* estilos do modal de detalhes */
 
-.modal-details {
+.modal-details,
+.modal-evaluation {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.25);
     display: none;
@@ -360,13 +364,23 @@ p.redirect-link a {
     /* backdrop-filter: blur(4px); */
 }
 
-.modal-details .modal-content {
+.modal-details .modal-content,
+.modal-evaluation .modal-content {
     background-color: #fff;
     border-radius: 20px;
     padding: 30px;
     z-index: 2;
     width: 560px;
     box-shadow: 3px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.modal-evaluation .modal-content {
+    width: 360px;
+}
+
+.modal-evaluation .modal-content form input,
+.modal-evaluation .modal-content form button {
+    margin-bottom: 0;
 }
 
 .form-row {
@@ -403,7 +417,11 @@ hr {
 .modal-details .modal-content form div input[type="submit"],
 .btn-secondary {
     width: min-content;
-    margin: 0;
+    /* margin: 0; */
+    background-color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
 }
 
 .modal-details .modal-content form div span {
@@ -570,4 +588,160 @@ select {
 
 select {
     padding-right: 30px;
+}
+
+.row-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button.close-icon {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    position: relative;
+    top: 0;
+}
+
+button.evaluateBtn,
+button.btn-approve,
+button.btn-reject {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Raleway';
+    gap: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button.evaluateBtn {
+    background-color: #F9B300;
+}
+
+button.evaluateBtn:hover {
+    background-color: #ffdb3b;
+}
+
+button.btn-approve {
+    background-color: #009F3D;
+}
+
+button.btn-approve:hover {
+    background-color: #03c14c;
+}
+
+button.btn-reject {
+    background-color: #CD0000;
+}
+
+button.btn-reject:hover {
+    background-color: #eb1717;
+}
+
+/* estilos dos botões que se comportam como input */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.select-button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: #EEEEEE;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    font-family: 'Raleway';
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.select-button.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.select-button:not(.selected):hover {
+    background-color: #e0e0e0;
+    /* Cor de fundo ao passar o mouse */
+}
+
+/* estilizações do modal de cadastro de espaço */
+
+.container-main-space-register .content {
+    max-width: 843px;
+}
+
+.form-register-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.form-register-row input[type="number"] {
+    width: 83%;
+}
+
+.form-register-row input[type="time"] {
+    width: 100px;
+    height: 16px;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.checkbox-container label {
+    white-space: nowrap;
+}
+
+.checkbox-container input {
+    margin-bottom: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+    width: 554px;
+    height: 60px;
+    justify-self: end;
+    border: 2px solid black;
+    border-radius: 12px;
+    outline: none;
+    transition: .3s;
+    font-family: 'Raleway';
+    font-size: 14px;
+    padding: 16px;
+}
+
+textarea:hover {
+    border-color: var(--hover-color);
+}
+
+.container-main-space-register .content form input[type="submit"] {
+    width: min-content;
+    justify-self: end;
+    display: block;
+    margin-top: 20px;
 }

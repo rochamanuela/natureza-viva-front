@@ -13,9 +13,9 @@
         <div class="links">
             <a href="">Todos agendamentos</a>
             <a href="">Novo espaço</a>
-            <a href="">Agendamentos pendentes</a>
-            <a href="">Avaliações pendentes</a>
-            <a href="gerenciar-espacos.html" class="active">Gerenciar espaços</a>
+            <a href="agendamentos-pendentes.html">Agendamentos pendentes</a>
+            <a href="avaliacoes-pendentes.html" class="active">Avaliações pendentes</a>
+            <a href="gerenciar-espacos.html">Gerenciar espaços</a>
             <a href="../consultar-agendamento.html">Consultar agendamento</a>
         </div>
         <div class="user-name">
@@ -39,20 +39,22 @@
         </div>
     </div>
 
-    <div class="modal-evaluation" id="evaluation">
+    <div class="modal-evaluation" id="evaluationModal">
         <div class="modal-content">
-            <h3>AVALIAÇÃO DO USO de Espaço</h3><br>
+            <h3>AVALIAÇÃO DO USO DE ESPAÇO</h3><br>
 
-            <div class="form-row">
-                <div>
-                    <label for="nota">Nota de 1 a 10</label>
-                    <input type="number" id="nota" name="horarioFim">
+            <form action="">
+                <div class="form-row">
+                    <div>
+                        <label for="nota">Nota de 1 a 10</label>
+                        <input type="number" id="nota" name="nota" min="0" max="10" step="1" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="close btn-secondary" id="closeModalBtn">Fechar</button>
+                        <input type="submit" id="saveEditBtn" class="btn-primary" value="Salvar">
+                    </div>
                 </div>
-            </div>
-            <div class="form-buttons">
-                <button class="close btn-secondary" id="closeModalBtn">Fechar</button>
-                <button id="saveEditBtn" class="btn-primary">Salvar</button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -97,8 +99,8 @@
                 row.appendChild(local);
 
                 const evaluateButton = document.createElement('td');
-                evaluateButton.innerHTML = '<button class="evaluateBtn">Avaliar</button>';
-                evaluateButton.querySelector('button').addEventListener('click', () => openEditModal(item, index));
+                evaluateButton.innerHTML = '<button class="evaluateBtn"><img src="../imagens/vectors/star.svg"><p>Avaliar</p></button>';
+                evaluateButton.querySelector('button').addEventListener('click', () => openEvaluateModal(item, index));
                 row.appendChild(evaluateButton);
 
                 containerTable.appendChild(row);
@@ -106,32 +108,12 @@
         }
 
 
-        // function openEditModal(item, index) {
-        //     document.getElementById('editdataEvento').value = item.dataEvento;
-        //     document.getElementById('editHorarioInicio').value = item.horarioInicio;
-        //     document.getElementById('editHorarioFim').value = item.horarioFim;
+        function openEvaluateModal(item, index) {
+            // aqui deve vir alguma conexão ou comunicação com o backend
 
-        //     editModal.style.display = 'flex';
-        //     saveEditBtn.onclick = () => saveEdit(index);
-        // }
-
-        // function saveEdit(index) {
-        //     const updatedData = {
-        //         dataEvento: document.getElementById('editdataEvento').value,
-        //         horarioInicio: document.getElementById('editHorarioInicio').value,
-        //         horarioFim: document.getElementById('editHorarioFim').value,
-        //         local: data[index].local,
-        //         avaliacao: data[index].avaliacao,
-        //         dataAprovacao: data[index].dataAprovacao
-        //     };
-
-        //     data[index] = updatedData;
-
-        //     editModal.style.display = 'none';
-        //     renderTable(data);
-        // }
-
-        // closeModalBtn.onclick = () => editModal.style.display = 'none';
+            evaluationModal.style.display = 'flex';
+            closeModalBtn.onclick = () => evaluationModal.style.display = 'none';
+        }
 
         renderTable(data);
     </script>

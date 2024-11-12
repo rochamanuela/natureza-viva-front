@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Resumo Agendamentos</title>
+</head>
+
+<body>
+    <div class="user-navbar">
+        <div class="links">
+            <a href="resumo-todos-agendamentos.html" class="active">Todos agendamentos</a>
+            <a href="">Novo espaço</a>
+            <a href="agendamentos-pendentes.html">Agendamentos pendentes</a>
+            <a href="avaliacoes-pendentes.html">Avaliações pendentes</a>
+            <a href="gerenciar-espacos.html">Gerenciar espaços</a>
+            <a href="../consultar-agendamento.html">Consultar agendamento</a>
+        </div>
+        <div class="user-name">
+            <p>Manuela Souza</p>
+            <div>MS</div>
+        </div>
+    </div>
+
+    <div class="container-main-table">
+        <div class="content">
+            <h1 class="page-title">Resumo de todos os Agendamentos</h1>
+            <table>
+                <tr>
+                    <th>Data da Solicitação</th>
+                    <th>Nome do Solicitante</th>
+                    <th>Data do Evento</th>
+                    <th>Horário do Evento</th>
+                    <th>Local do Evento</th>
+                    <th>Avaliação</th>
+                    <th>Aprovado em</th>
+                </tr>
+                <tbody id="tableContainer"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                dataSolicitacao: 'Sep. 20, 2024',
+                nomeSolicitante: 'Manuela Souza',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+                local: 'Auditório 2',
+                avaliacao: 'Indisponível',
+                dataAprovacao: 'Pendente'
+            },
+            {
+                dataSolicitacao: 'Sep. 20, 2024',
+                nomeSolicitante: 'Thiago Souza',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '14:00',
+                horarioFim: '16:00',
+                local: 'Auditório 3',
+                avaliacao: '8 de 10',
+                dataAprovacao: 'Sep. 20, 2024'
+            },
+            {
+                dataSolicitacao: 'Sep. 20, 2024',
+                nomeSolicitante: 'Kalil Felipe',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '10:30',
+                horarioFim: '12:45',
+                local: 'Auditório 2',
+                avaliacao: 'Indisponível',
+                dataAprovacao: 'Pendente'
+            },
+            {
+                dataSolicitacao: 'Sep. 20, 2024',
+                nomeSolicitante: 'Alannis Morisette',
+                dataEvento: 'Nov. 1, 2024',
+                horarioInicio: '14:00',
+                horarioFim: '16:00',
+                local: 'Auditório 3',
+                avaliacao: '8 de 10',
+                dataAprovacao: 'Sep. 20, 2024'
+            },
+        ];
+
+        function renderTable(data) {
+            const containerTable = document.getElementById('tableContainer');
+            containerTable.innerHTML = '';
+
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+
+                const dataSolicitacao = document.createElement('td');
+                dataSolicitacao.textContent = item.dataSolicitacao;
+                row.appendChild(dataSolicitacao);
+
+                const nomeSolicitante = document.createElement('td');
+                nomeSolicitante.textContent = item.nomeSolicitante;
+                row.appendChild(nomeSolicitante);
+
+                const dataEvento = document.createElement('td');
+                dataEvento.textContent = item.dataEvento;
+                row.appendChild(dataEvento);
+
+                const horario = document.createElement('td');
+                horario.textContent = `${item.horarioInicio} - ${item.horarioFim}`;
+                row.appendChild(horario);
+
+                const local = document.createElement('td');
+                local.textContent = item.local;
+                row.appendChild(local);
+
+                const avaliacao = document.createElement('td');
+                avaliacao.innerHTML = `<p>${item.avaliacao}</p>`;
+                if (item.avaliacao === 'Indisponível') {
+                    avaliacao.classList.add('status-indisponivel');
+                } else if (item.avaliacao === 'Pendente') {
+                    avaliacao.classList.add('status-pendente');
+                }
+                row.appendChild(avaliacao);
+
+                const dataAprovacao = document.createElement('td');
+                dataAprovacao.innerHTML = `<p>${item.dataAprovacao}</p>`;
+                if (item.dataAprovacao === 'Pendente') {
+                    dataAprovacao.classList.add('status-pendente');
+                }
+                row.appendChild(dataAprovacao);
+
+                containerTable.appendChild(row);
+            });
+        }
+
+        renderTable(data);
+    </script>
+</body>
+
+</html>

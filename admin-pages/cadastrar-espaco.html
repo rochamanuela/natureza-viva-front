@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Cadastro de Espaço</title>
+</head>
+
+<body>
+    <div class="user-navbar">
+        <div class="links">
+            <a href="resumo-todos-agendamentos.html">Todos agendamentos</a>
+            <a href="cadastrar-espaco.html" class="active">Novo espaço</a>
+            <a href="agendamentos-pendentes.html">Agendamentos pendentes</a>
+            <a href="avaliacoes-pendentes.html">Avaliações pendentes</a>
+            <a href="gerenciar-espacos.html">Gerenciar espaços</a>
+            <a href="../consultar-agendamento.html">Consultar agendamento</a>
+        </div>
+        <div class="user-name">
+            <p>Manuela Souza</p>
+            <div>MS</div>
+        </div>
+    </div>
+
+    <div class="container-main-space-register">
+        <div class="content">
+            <h1 class="page-title">Cadastro de novo espaço</h1>
+            <form action="">
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Nome do Local</label>
+                        <input required type="text" name="nome" placeholder="Auditório">
+                    </div>
+                    <div>
+                        <label for="">Capacidade máxima</label>
+                        <input required type="number" name="capacidade" placeholder="10">
+                    </div>
+                    <div>
+                        <label for="">Horários disponíveis</label>
+                        <div class="form-row">
+                            <input required type="time" name="horarioInicio">
+                            <input required type="time" name="horarioFim">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Dias disponíveis</label>
+                        <div class="button-group">
+                            <button type="button" class="select-button" onclick="selectDay(this)">Segunda-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Terça-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Quarta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Quinta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Sexta-feira</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Sábado</button>
+                            <button type="button" class="select-button" onclick="selectDay(this)">Domingo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-register-row">
+                    <div>
+                        <label for="">Restrições do local</label>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="dontEat" name="dontEat" value="dontEat">
+                            <label for="dontEat">Proibido comer no local</label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="noSmoking" name="noSmoking" value="noSmoking">
+                            <label for="noSmoking">Proibido fumar no local</label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="keepQuiet" name="keepQuiet" value="keepQuiet">
+                            <label for="keepQuiet">Proibido fazer barulhos altos</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="">Observação</label>
+                        <textarea name="observacao" id=""></textarea>
+                    </div>
+                </div>
+                <input type="submit" value="Salvar">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function selectDay(button) {
+            button.classList.toggle('selected'); // Alterna a seleção do botão clicado
+        }
+
+        function saveSelection() {
+            // Coleta os dias que têm a classe 'selected'
+            const selectedDays = Array.from(document.querySelectorAll('.select-button.selected'))
+                .map(button => button.getAttribute('data-day'));
+
+            console.log(selectedDays); // Exibe o array de dias selecionados no console
+
+            // Você pode usar esse array para outros fins, como enviar para um servidor ou exibir em outro lugar
+        }
+
+
+    </script>
+</body>
+
+</html>
