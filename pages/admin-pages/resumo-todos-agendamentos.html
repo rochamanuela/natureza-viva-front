@@ -10,6 +10,7 @@
 
 <body>
     <div class="user-navbar">
+        <button class="hamburger-menu" aria-label="Menu">☰</button>
         <div class="links">
             <a href="resumo-todos-agendamentos.html" class="active">Todos agendamentos</a>
             <a href="cadastrar-espaco.html">Novo espaço</a>
@@ -23,6 +24,8 @@
             <div>MS</div>
         </div>
     </div>
+
+    <div class="menu-overlay"></div>
 
     <div class="container-main-table">
         <div class="content">
@@ -138,6 +141,16 @@
         }
 
         renderTable(data);
+
+        document.querySelector('.hamburger-menu').addEventListener('click', () => {
+            const links = document.querySelector('.user-navbar .links');
+            const overlay = document.querySelector('.menu-overlay');
+
+            links.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        
     </script>
 </body>
 
