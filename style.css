@@ -466,25 +466,57 @@ hr {
 
 /* estilo das tabelas */
 
-.container-main-table .content table {
+.container-main-table {
+    width: 100%;
+}
+
+.container-main-table .content {
+    padding: 40px
+}
+
+.container-main-table .content .table-container {
+    overflow-x: scroll;
+    display: block;
+    width: 100%;
+    max-width: calc(100vw - 100px);
+}
+
+.container-main-table .content .table-container table {
     border-collapse: collapse;
     border: 1px solid #E0E0E0;
     border-radius: 10px;
+    
+    width: 100%;
 }
 
-.container-main-table .content table tr th {
+.container-main-table .content .table-container table tr th {
     background-color: #E0E0E0;
     font-weight: 600;
 }
 
-.container-main-table .content table tr {
+.container-main-table .content .table-container table tr {
     border-bottom: 1px solid #E0E0E0;
 }
 
-.container-main-table .content table tr th,
-.container-main-table .content table tr td {
+.container-main-table .content .table-container table tr th,
+.container-main-table .content .table-container table tr td {
     padding: 15px 30px;
     text-align: center;
+    white-space: nowrap;
+}
+
+.table-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #E0E0E0;
+    border-radius: 0px;
+    border: none;
 }
 
 /* teste */

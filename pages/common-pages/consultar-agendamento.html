@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
     <title>Consultar Agendamento</title>
 </head>
 
@@ -13,9 +13,9 @@
     usuário para renderizar o menu corretamente -->
     <div class="user-navbar">
         <div class="links">
-            <a href="alugar-espaco.html">Alugar espaço</a>
+            <a href="../user-pages/alugar-espaco.html">Alugar espaço</a>
             <a href="consultar-agendamento.html" class="active">Consultar agendamento</a>
-            <a href="meus-agendamentos.html">Meus agendamentos</a>
+            <a href="../user-pages/meus-agendamentos.html">Meus agendamentos</a>
         </div>
         <div class="user-name">
             <p>Jennifer Adrielle</p>
@@ -56,17 +56,20 @@
                         <input type="submit" value="Buscar">
                     </div>
                 </div>
-
             </form>
-            <table>
-                <tr>
-                    <th>Nome do Solicitante</th>
-                    <th>Data do Evento</th>
-                    <th>Horário do Evento</th>
-                    <th>Local do Evento</th>
-                </tr>
-                <tbody id="tableContainer"></tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome do Solicitante</th>
+                            <th>Data do Evento</th>
+                            <th>Horário do Evento</th>
+                            <th>Local do Evento</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableContainer"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 

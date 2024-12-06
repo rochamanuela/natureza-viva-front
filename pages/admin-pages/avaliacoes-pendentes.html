@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../style.css">
     <title>Meus agendamentos</title>
 </head>
 
@@ -27,15 +27,19 @@
     <div class="container-main-table">
         <div class="content">
             <h1 class="page-title">Avaliações Pendentes</h1>
-            <table>
-                <tr>
-                    <th>Nome do Usuário</th>
-                    <th>Evento ocorrido em</th>
-                    <th>Local do Evento</th>
-                    <th>Ações</th>
-                </tr>
-                <tbody id="tableContainer"></tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome do Usuário</th>
+                            <th>Evento ocorrido em</th>
+                            <th>Local do Evento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableContainer"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -99,7 +103,7 @@
                 row.appendChild(local);
 
                 const evaluateButton = document.createElement('td');
-                evaluateButton.innerHTML = '<button class="evaluateBtn"><img src="../imagens/vectors/star.svg"><p>Avaliar</p></button>';
+                evaluateButton.innerHTML = '<button class="evaluateBtn"><img src="../../imagens/vectors/star.svg"><p>AVALIAR</p></button>';
                 evaluateButton.querySelector('button').addEventListener('click', () => openEvaluateModal(item, index));
                 row.appendChild(evaluateButton);
 
